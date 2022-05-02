@@ -21,7 +21,7 @@ public class Trigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(UIManager.Instance.DisplayDialog(dialog));
+            UIManager.Instance.DisplayDialog(dialog);
             Destroy(this.gameObject);
         }
     }

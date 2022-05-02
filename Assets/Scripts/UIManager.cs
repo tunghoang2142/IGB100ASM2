@@ -36,7 +36,12 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public IEnumerator DisplayDialog(string text)
+    public void DisplayDialog(string text)
+    {
+        StartCoroutine(DialogEnumerator(text));
+    }
+
+    IEnumerator DialogEnumerator(string text)
     {
         dialog.text = text;
         dialog.gameObject.SetActive(true);
