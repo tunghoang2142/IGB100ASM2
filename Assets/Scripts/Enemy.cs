@@ -83,8 +83,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     public void TakeDamage(float dam)
     {
+        // Makeshift
+        List<string> dialogs = new List<string>();
+        dialogs.Add("Help!");
+        dialogs.Add("Argggggggg!!!");
+        dialogs.Add("No!!!");
+        dialogs.Add("Murder!");
+        int choose = Random.Range(0, dialogs.Capacity - 1);
+        UIManager.Instance.DisplayDialog(dialogs[choose]);
+        //
+
+        isPlayerDetected = true;
         health -= dam;
         if (health <= 0)
         {
