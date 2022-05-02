@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -28,7 +29,8 @@ public class Player : MonoBehaviour
 
     void Rotate()
     {
-        float horizontalRotation = Input.GetAxis("Mouse X") * Time.deltaTime * rotationSpeed;
+        float horizontalRotation = Input.GetAxisRaw("Mouse X") * Time.deltaTime * rotationSpeed;
         this.transform.Rotate(Vector3.up, horizontalRotation);
+
     }
 }
