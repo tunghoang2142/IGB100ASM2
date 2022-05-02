@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public float textDelayTime = 2f;
     public TMP_Text dialog;
 
     static UIManager _instance;
@@ -45,7 +46,7 @@ public class UIManager : MonoBehaviour
     {
         dialog.text = text;
         dialog.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(textDelayTime);
         dialog.gameObject.SetActive(false);
     }
 }

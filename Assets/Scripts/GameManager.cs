@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     public float stressPenaltyRate = 30f;
     public GameObject existPoint;
 
+    [Header("Sound Setting")]
+    public float maxVolumnDistance = 5f;
+    public float minVolumnDistannce = 50f;
+    public float maxVolumn = 1f;
+    public float minVolumn = 0.5f;
+
     [Header("Game State")]
     public bool isGamePaused = false;
     public bool isDay = false;
@@ -35,6 +41,9 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager Instance { get { return _instance; } }
+    public static float Stress { get { return stress; } }
+    public static float Madness { get { return madness; } }
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +55,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         IncreaseStress();
+        ChangeBGMSound();
     }
 
     void IncreaseStress()
@@ -64,5 +74,27 @@ public class GameManager : MonoBehaviour
     public void IncreaseMadness(float amount)
     {
         madness += amount;
+    }
+
+    void ChangeBGMSound()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float minDistance = minVolumnDistannce;
+        foreach (var enemy in enemies)
+        {
+            float distance = (enemy.transform.position - player.transform.position).magnitude;
+            if(distance < minDistance)
+            {
+                minDistance = distance;
+            }
+        }
+
+        minDistance = Mathf.Clamp(minDistance, maxVolumnDistance, minVolumnDistannce);
+        float volumnRatio = 1 - (minDistance - maxVolumnDistance) / (minVolumnDistannce - maxVolumnDistance);
+        float volumn = (maxVolumn - minVolumn) * volumnRatio + minVolumn;
+        volumn = Mathf.Clamp(volumn, minVolumn, maxVolumn);
+        SoundManager.Instance.ChangeBGMVolumn(volumn);
+
     }
 }

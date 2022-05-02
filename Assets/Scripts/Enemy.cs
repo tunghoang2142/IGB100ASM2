@@ -42,21 +42,20 @@ public class Enemy : MonoBehaviour
 
         Vector3 playerDirection = player.transform.position - this.transform.position;
 
-        if(playerDirection.magnitude <= absoluteDetectionRadius)
-        {
-            isPlayerDetected = true;
-            return;
-        }
-
         Ray ray = new(this.transform.position, playerDirection);
-
         RaycastHit raycastHit;
         Physics.Raycast(ray, out raycastHit);
+
         if (!raycastHit.collider.transform.CompareTag("Player"))
         {
             return;
         }
 
+        if (playerDirection.magnitude <= absoluteDetectionRadius)
+        {
+            isPlayerDetected = true;
+            return;
+        }
 
         float playerDistance = playerDirection.magnitude;
         if (playerDistance > detectionRange)

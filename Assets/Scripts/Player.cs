@@ -6,6 +6,11 @@ public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public float rotationSpeed = 45f;
+    public float meleeDam = 1f;
+    public float meleeDelay = 0.6f;
+
+    float attackDelay = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +23,28 @@ public class Player : MonoBehaviour
     {
         Move();
         Rotate();
+
+        Attack();
+
+    }
+
+    void Attack()
+    {
+        attackDelay -= Time.deltaTime;
+        if (Input.GetMouseButton(0) && attackDelay <= 0)
+        {
+            attackDelay = meleeDelay;
+            Ray ray = new Ray(this.transform.position, this.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 0.6f))
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    //print("Enemy Hit");
+                    hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(meleeDam);
+                }
+            }
+        }
     }
 
     void Move()
