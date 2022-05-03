@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
 
     static UIManager _instance;
 
+    // Test
+    bool isDisplayDialog = false;
+
 
     private void Awake()
     {
@@ -28,7 +31,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Test
+        //dialog.gameObject.SetActive(true);
+        //dialog.text = "a\nb";
     }
 
     // Update is called once per frame
