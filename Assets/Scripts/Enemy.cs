@@ -34,6 +34,16 @@ public class Enemy : MonoBehaviour
 
     void Detect()
     {
+        // Makeshift
+        List<string> dialogs = new List<string>();
+        dialogs.Add("Help!");
+        dialogs.Add("Argggggggg!!!");
+        dialogs.Add("No!!!");
+        dialogs.Add("Murder!");
+        int choose = Random.Range(0, dialogs.Capacity - 1);
+        //
+
+
         if (isPlayerDetected)
         {
             Escape();
@@ -53,6 +63,10 @@ public class Enemy : MonoBehaviour
 
         if (playerDirection.magnitude <= absoluteDetectionRadius)
         {
+            // Makeshift
+            UIManager.Instance.DisplayDialog(dialogs[choose]);
+            //
+
             isPlayerDetected = true;
             return;
         }
@@ -68,6 +82,10 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+
+        // Makeshift
+        UIManager.Instance.DisplayDialog(dialogs[choose]);
+        //
 
         isPlayerDetected = true;
     }
