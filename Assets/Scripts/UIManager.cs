@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public float textDelayTime = 2f;
+    public float textDisplayTime = 2f;
     public TMP_Text dialog;
 
     static UIManager _instance;
-
-    // Test
-    bool isDisplayDialog = false;
-
+    float displayTimer = 0f;
 
     private void Awake()
     {
@@ -31,27 +29,60 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Test
-        //dialog.gameObject.SetActive(true);
-        //dialog.text = "a\nb";
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayDialog();
+    }
+
+    void DisplayDialog()
+    {
+        displayTimer -= Time.deltaTime;
+        if (displayTimer > 0)
+        {
+            dialog.gameObject.SetActive(true);
+        }
+        else
+        {
+            dialog.gameObject.SetActive(false);
+        }
     }
 
     public void DisplayDialog(string text)
     {
-        StartCoroutine(DialogEnumerator(text));
+        print(text);
+        dialog.text += text + "\n";
+        displayTimer = textDisplayTime;
+        StartCoroutine(DialogEnumerator());
     }
 
-    IEnumerator DialogEnumerator(string text)
+    IEnumerator DialogEnumerator()
     {
-        dialog.text = text;
-        dialog.gameObject.SetActive(true);
-        yield return new WaitForSeconds(textDelayTime);
-        dialog.gameObject.SetActive(false);
+        yield return new WaitForSeconds(textDisplayTime);
+        dialog.text = RemoveFirstLine(dialog.text);
+    }
+
+    string RemoveFirstLine(string str)
+    {
+        //print(str);
+        string[] lines = Regex.Split(str, "\n");
+        string result = "";
+        for(int i = 0; i < lines.Length; i++)
+        {
+            if(i == 0)
+            {
+                continue;
+            }
+            if(lines[i] == "")
+            {
+                continue;
+            }
+            result += lines[i] + "\n";
+        }
+        return result;
     }
 }

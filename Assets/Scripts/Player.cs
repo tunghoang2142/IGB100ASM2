@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 45f;
     public float meleeDam = 1f;
     public float meleeDelay = 0.6f;
+    public float attackRange = 1f;
 
     float attackDelay = 0f;
 
@@ -31,12 +32,13 @@ public class Player : MonoBehaviour
     void Attack()
     {
         attackDelay -= Time.deltaTime;
+        //print(attackDelay);
         if (Input.GetMouseButton(0) && attackDelay <= 0)
         {
             attackDelay = meleeDelay;
             Ray ray = new Ray(this.transform.position, this.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 0.6f))
+            if (Physics.Raycast(ray, out hit, attackRange))
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {

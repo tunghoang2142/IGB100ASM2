@@ -1158,10 +1158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45993e13625e45f0bebb1f4803c384d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   rotationSpeed: 180
   meleeDam: 1
   meleeDelay: 0.6
+  attackRange: 1
 --- !u!136 &294541064
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4232,7 +4233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3deb9f6f1834187841098f4c623982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textDelayTime: 2
+  textDisplayTime: 2
   dialog: {fileID: 1565248758}
 --- !u!4 &1181220155
 Transform:
@@ -5904,7 +5905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537566676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.748, y: 0.933, z: 31.17}
+  m_LocalPosition: {x: 45.1, y: 0.933, z: 31.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5969,7 +5970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ABC
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
