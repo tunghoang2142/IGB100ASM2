@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
         effectSource.clip = clip;
     }
 
-    public void RunEffect()
+    public void PlayEffect()
     {
         effectSource.Play();
         //if (!effectSource.isPlaying)

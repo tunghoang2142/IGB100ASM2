@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     public float textDisplayTime = 2f;
     public TMP_Text dialog;
+    public GameObject gameover;
+    public TMP_Text stress;
 
     static UIManager _instance;
     float displayTimer = 0f;
@@ -37,6 +39,19 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         DisplayDialog();
+        stress.text = "Stress: " + (int) GameManager.Stress;
+    }
+
+    public void Gameover()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void DisplayDialog(string text)
+    {
+        dialog.text += text + "\n";
+        displayTimer = textDisplayTime;
+        StartCoroutine(DialogEnumerator());
     }
 
     void DisplayDialog()
@@ -50,14 +65,6 @@ public class UIManager : MonoBehaviour
         {
             dialog.gameObject.SetActive(false);
         }
-    }
-
-    public void DisplayDialog(string text)
-    {
-        print(text);
-        dialog.text += text + "\n";
-        displayTimer = textDisplayTime;
-        StartCoroutine(DialogEnumerator());
     }
 
     IEnumerator DialogEnumerator()

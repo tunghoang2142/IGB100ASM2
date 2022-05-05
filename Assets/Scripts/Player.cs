@@ -60,6 +60,5 @@ public class Player : MonoBehaviour
     {
         float horizontalRotation = Input.GetAxisRaw("Mouse X") * Time.deltaTime * rotationSpeed;
         this.transform.Rotate(Vector3.up, horizontalRotation);
-
     }
 }

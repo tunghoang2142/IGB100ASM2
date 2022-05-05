@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +22,16 @@ public class GameManager : MonoBehaviour
     public float maxVolumn = 1f;
     public float minVolumn = 0.5f;
 
+    [Header("Game Object")]
+    public GameObject hint;
+
     [Header("Game State")]
+    public bool isGameover = false;
     public bool isGamePaused = false;
     public bool isDay = false;
 
-
+    GameObject player;
+    LineRenderer lineRenderer;
     private static GameManager _instance;
 
     private void Awake()
@@ -48,14 +54,30 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject.Find("Waypoints").transform.child
+        player = GameObject.FindGameObjectWithTag("Player");
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameover)
+        {
+            Time.timeScale = 0;
+            return;
+        }
+
+        // TODO replace this
+        hint = GameObject.FindGameObjectWithTag("Hint");
+        if(stress >= 100)
+        {
+            Gameover();
+        }
+        //
+
         IncreaseStress();
         ChangeBGMSound();
+        DrawPath();
     }
 
     void IncreaseStress()
@@ -76,6 +98,12 @@ public class GameManager : MonoBehaviour
         madness += amount;
     }
 
+    void Gameover()
+    {
+        isGameover = true;
+        UIManager.Instance.Gameover();
+    }
+
     void ChangeBGMSound()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -84,7 +112,7 @@ public class GameManager : MonoBehaviour
         foreach (var enemy in enemies)
         {
             float distance = (enemy.transform.position - player.transform.position).magnitude;
-            if(distance < minDistance)
+            if (distance < minDistance)
             {
                 minDistance = distance;
             }
@@ -96,5 +124,23 @@ public class GameManager : MonoBehaviour
         volumn = Mathf.Clamp(volumn, minVolumn, maxVolumn);
         SoundManager.Instance.ChangeBGMVolumn(volumn);
 
+    }
+
+    void DrawPath()
+    {
+        if (!hint)
+        {
+            lineRenderer.enabled = false;
+            return;
+        }
+        lineRenderer.enabled = true;
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(player.transform.position, hint.transform.position, NavMesh.AllAreas, path);
+        lineRenderer.positionCount = path.corners.Length;
+        
+        for (int i = 0; i < path.corners.Length; i++)
+        {
+            lineRenderer.SetPosition(i, path.corners[i]);
+        }
     }
 }
