@@ -3226,7 +3226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 180
+  rotationSpeed: 60
   meleeDam: 1
   meleeDelay: 0.6
   attackRange: 1
@@ -4152,12 +4152,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stressAccumulateRate: 0.3
   madnessAccumulateRate: 10
-  stressPenaltyRate: 30
+  stressReward: -50
+  stressPenalty: 30
+  maxVolumeDistance: 5
+  minVolumeDistannce: 50
+  maxVolume: 1
+  minVolume: 0.5
   existPoint: {fileID: 1537566676}
-  maxVolumnDistance: 5
-  minVolumnDistannce: 50
-  maxVolumn: 1
-  minVolumn: 0.2
   hint: {fileID: 0}
   isGameover: 0
   isGamePaused: 0
@@ -15996,7 +15997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537566676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.1, y: 6.82, z: 31.581}
+  m_LocalPosition: {x: 45.1, y: 0.28, z: 31.581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

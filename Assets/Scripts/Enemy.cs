@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 30f;
     public float detectionAngle = 30f;
     public float absoluteDetectionRadius = 3f;
+    public float escapeDistance;
 
     bool isPlayerDetected = false;
     GameObject player;
@@ -84,9 +85,9 @@ public class Enemy : MonoBehaviour
     {
         agent.SetDestination(GameManager.Instance.existPoint.transform.position);
         float distance = (GameManager.Instance.existPoint.transform.position - this.transform.position).magnitude;
-        if(distance <= 1)
+        if (distance <= escapeDistance)
         {
-            GameManager.Instance.IncreaseStress(GameManager.Instance.stressPenaltyRate);
+            GameManager.Instance.IncreaseStress(GameManager.Instance.stressPenalty);
             Destroy(this.gameObject);
         }
     }
@@ -108,6 +109,7 @@ public class Enemy : MonoBehaviour
         health -= dam;
         if (health <= 0)
         {
+            GameManager.Instance.IncreaseStress(GameManager.Instance.stressReward);
             GameManager.Instance.IncreaseMadness(GameManager.Instance.madnessAccumulateRate);
             Destroy(this.gameObject);
         }

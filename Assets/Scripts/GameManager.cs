@@ -13,16 +13,18 @@ public class GameManager : MonoBehaviour
     [Header("Setting")]
     public float stressAccumulateRate = 0.3f;
     public float madnessAccumulateRate = 10f;
-    public float stressPenaltyRate = 30f;
-    public GameObject existPoint;
+    public float stressReward = -50f;
+    public float stressPenalty = 30f;
+    
 
     [Header("Sound Setting")]
-    public float maxVolumnDistance = 5f;
-    public float minVolumnDistannce = 50f;
-    public float maxVolumn = 1f;
-    public float minVolumn = 0.5f;
+    public float maxVolumeDistance = 5f;
+    public float minVolumeDistannce = 50f;
+    public float maxVolume = 1f;
+    public float minVolume = 0.5f;
 
     [Header("Game Object")]
+    public GameObject existPoint;
     public GameObject hint;
 
     [Header("Game State")]
@@ -108,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float minDistance = minVolumnDistannce;
+        float minDistance = minVolumeDistannce;
         foreach (var enemy in enemies)
         {
             float distance = (enemy.transform.position - player.transform.position).magnitude;
@@ -118,12 +120,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        minDistance = Mathf.Clamp(minDistance, maxVolumnDistance, minVolumnDistannce);
-        float volumnRatio = 1 - (minDistance - maxVolumnDistance) / (minVolumnDistannce - maxVolumnDistance);
-        float volumn = (maxVolumn - minVolumn) * volumnRatio + minVolumn;
-        volumn = Mathf.Clamp(volumn, minVolumn, maxVolumn);
+        minDistance = Mathf.Clamp(minDistance, maxVolumeDistance, minVolumeDistannce);
+        float volumnRatio = 1 - (minDistance - maxVolumeDistance) / (minVolumeDistannce - maxVolumeDistance);
+        float volumn = (maxVolume - minVolume) * volumnRatio + minVolume;
+        volumn = Mathf.Clamp(volumn, minVolume, maxVolume);
         SoundManager.Instance.ChangeBGMVolumn(volumn);
-
     }
 
     void DrawPath()
