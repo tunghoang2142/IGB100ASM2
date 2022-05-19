@@ -10,9 +10,11 @@ public class UIManager : MonoBehaviour
     public TMP_Text dialog;
     public GameObject gameover;
     public TMP_Text stress;
+    public TMP_Text announceText;
 
     static UIManager _instance;
     float displayTimer = 0f;
+    float announceTimer = 0f;
 
     private void Awake()
     {
@@ -39,7 +41,11 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         DisplayDialog();
-        stress.text = "Stress: " + (int) GameManager.Stress;
+        DisplayAnnouncement();
+        if (stress)
+        {
+            stress.text = "Stress: " + (int)GameManager.Stress;
+        }
     }
 
     public void Gameover()
@@ -52,6 +58,13 @@ public class UIManager : MonoBehaviour
         dialog.text += text + "\n";
         displayTimer = textDisplayTime;
         StartCoroutine(DialogEnumerator());
+    }
+
+    public void DisplayAnnouncement(string text)
+    {
+        announceText.text += text + "\n";
+        displayTimer = textDisplayTime;
+        StartCoroutine(AnnouncementEnumerator());
     }
 
     void DisplayDialog()
@@ -67,10 +80,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void DisplayAnnouncement()
+    {
+        announceTimer -= Time.deltaTime;
+        if (announceTimer > 0)
+        {
+            announceText.gameObject.SetActive(true);
+        }
+        else
+        {
+            announceText.gameObject.SetActive(false);
+        }
+    }
+
     IEnumerator DialogEnumerator()
     {
         yield return new WaitForSeconds(textDisplayTime);
         dialog.text = RemoveFirstLine(dialog.text);
+    }
+
+    IEnumerator AnnouncementEnumerator()
+    {
+        yield return new WaitForSeconds(textDisplayTime);
+        announceText.text = RemoveFirstLine(dialog.text);
     }
 
     string RemoveFirstLine(string str)
@@ -78,13 +110,13 @@ public class UIManager : MonoBehaviour
         //print(str);
         string[] lines = Regex.Split(str, "\n");
         string result = "";
-        for(int i = 0; i < lines.Length; i++)
+        for (int i = 0; i < lines.Length; i++)
         {
-            if(i == 0)
+            if (i == 0)
             {
                 continue;
             }
-            if(lines[i] == "")
+            if (lines[i] == "")
             {
                 continue;
             }

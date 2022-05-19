@@ -5,11 +5,6 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Stats")]
-    public static float money = 0f;
-    public static float stress = 0f;
-    public static float madness = 0f;
-
     [Header("Setting")]
     public float stressAccumulateRate = 0.3f;
     public float madnessAccumulateRate = 10f;
@@ -30,11 +25,15 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     public bool isGameover = false;
     public bool isGamePaused = false;
-    public bool isDay = false;
+    public bool isNight = true;
 
     GameObject player;
     LineRenderer lineRenderer;
     private static GameManager _instance;
+    static float money = 0f;
+    static float stress = 0f;
+    static float madness = 0f;
+    static string sceneName;
 
     private void Awake()
     {
@@ -49,6 +48,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager Instance { get { return _instance; } }
+    public static string SceneName  { get { return sceneName; } }
     public static float Stress { get { return stress; } }
     public static float Madness { get { return madness; } }
 
@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.FindGameObjectWithTag("Enemy") && isNight)
+        {
+            StartCoroutine(LoadNextScene());
+        }
+
         if (isGameover)
         {
             Time.timeScale = 0;
@@ -77,14 +82,28 @@ public class GameManager : MonoBehaviour
         }
         //
 
-        IncreaseStress();
-        ChangeBGMSound();
-        DrawPath();
+        if (isNight)
+        {
+            IncreaseStress();
+            ChangeBGMSound();
+            DrawPath();
+        }
+    }
+
+    IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(UIManager.Instance.textDisplayTime);
+        ScenarioManager.Instance.LoadNextScene();
+    }
+
+    public void ChangeSceneName(string name)
+    {
+        sceneName = name;
     }
 
     void IncreaseStress()
     {
-        if (!isGamePaused && !isDay)
+        if (!isGamePaused && !isNight)
         {
             stress += Time.deltaTime * stressAccumulateRate;
         }
@@ -93,6 +112,16 @@ public class GameManager : MonoBehaviour
     public void IncreaseStress(float amount)
     {
         stress += amount;
+        string stressAnnounce;
+        if(amount >= 0)
+        {
+            stressAnnounce = "+ " + amount;
+        }
+        else
+        {
+            stressAnnounce = "-" + amount;
+        }
+        UIManager.Instance.DisplayAnnouncement(stressAnnounce);
     }
 
     public void IncreaseMadness(float amount)

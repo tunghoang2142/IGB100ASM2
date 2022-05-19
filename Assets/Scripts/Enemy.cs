@@ -109,6 +109,9 @@ public class Enemy : MonoBehaviour
         health -= dam;
         if (health <= 0)
         {
+            // Makeshift
+            UIManager.Instance.DisplayDialog("Me: What a beautiful sound!");
+            //
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressReward);
             GameManager.Instance.IncreaseMadness(GameManager.Instance.madnessAccumulateRate);
             Destroy(this.gameObject);
