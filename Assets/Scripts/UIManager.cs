@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
     public void DisplayAnnouncement(string text)
     {
         announceText.text += text + "\n";
-        displayTimer = textDisplayTime;
+        announceTimer = textDisplayTime;
         StartCoroutine(AnnouncementEnumerator());
     }
 
