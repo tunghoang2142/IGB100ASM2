@@ -73,11 +73,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Pause();
-        }
-
         // TODO replace this
         hint = GameObject.FindGameObjectWithTag("Hint");
         if(stress >= 100)
@@ -91,6 +86,11 @@ public class GameManager : MonoBehaviour
             IncreaseStress();
             ChangeBGMSound();
             DrawPath();
+
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Pause();
+            }
         }
     }
 
