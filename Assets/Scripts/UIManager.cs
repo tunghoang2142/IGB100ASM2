@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public float textDisplayTime = 2f;
     public TMP_Text dialog;
     public GameObject gameover;
+    public GameObject pause;
     public TMP_Text stress;
     public TMP_Text announceText;
 
@@ -40,8 +41,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayDialog();
-        DisplayAnnouncement();
+        if (GameManager.Instance.isNight)
+        {
+            DisplayDialog();
+            DisplayAnnouncement();
+        }
+        
         if (stress)
         {
             stress.text = "Stress: " + (int)GameManager.Stress;
@@ -50,7 +55,19 @@ public class UIManager : MonoBehaviour
 
     public void Gameover()
     {
-        gameObject.SetActive(true);
+        gameover.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        if (!GameManager.Instance.isGamePaused)
+        {
+            pause.gameObject.SetActive(true);
+        }
+        else
+        {
+            pause.gameObject.SetActive(false);
+        }
     }
 
     public void DisplayDialog(string text)

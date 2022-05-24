@@ -70,8 +70,12 @@ public class GameManager : MonoBehaviour
 
         if (isGameover)
         {
-            Time.timeScale = 0;
             return;
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Pause();
         }
 
         // TODO replace this
@@ -131,8 +135,26 @@ public class GameManager : MonoBehaviour
 
     void Gameover()
     {
+        Time.timeScale = 0;
         isGameover = true;
         UIManager.Instance.Gameover();
+    }
+
+    public void Pause()
+    {
+        if (!isGamePaused)
+        {
+            Time.timeScale = 0;
+            isGamePaused = true;
+            UIManager.Instance.Pause();
+
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isGamePaused = false;
+            UIManager.Instance.Pause();
+        }
     }
 
     void ChangeBGMSound()

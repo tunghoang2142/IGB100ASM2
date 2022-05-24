@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine.UI;
 
-public class StoryTeller : MonoBehaviour
+public class Storyteller : MonoBehaviour
 {
     public TMP_Text charName;
     public Image charImage;

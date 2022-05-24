@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScenarioManager : MonoBehaviour
 {
     static ScenarioManager _instance;
-    string[] sceneOrder = { "Day 1", "Day 2", "NightScene", "Night 2" };
+    string[] sceneOrder = { "Menu", "Day 1", "Day 2", "NightScene", "Night 2" };
     static int sceneIndex = 0;
 
     private void Awake()
@@ -36,19 +36,25 @@ public class ScenarioManager : MonoBehaviour
     public void LoadNextScene()
     {
         sceneIndex += 1;
-        if(sceneOrder.Length > sceneIndex)
+        if (sceneOrder.Length > sceneIndex)
         {
             LoadScene();
         }
         else
         {
-            //TODO: Gameover or loop last scene
+            Menu();
         }
     }
 
     public void LoadCurrentScene()
     {
         LoadScene();
+    }
+
+    public void Menu()
+    {
+        sceneIndex = 0;
+        LoadCurrentScene();
     }
 
     void LoadScene()
