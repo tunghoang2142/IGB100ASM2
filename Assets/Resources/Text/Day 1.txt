@@ -1,5 +1,5 @@
-: What day is today?
-Main: What a day
+: Day 1
+Main: Test
 Matthew: A
 Main: B
 Matthew: C
