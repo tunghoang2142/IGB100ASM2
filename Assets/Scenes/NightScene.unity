@@ -4697,7 +4697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340044053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.3348193, y: 9, z: -7.863222}
+  m_LocalPosition: {x: -4.3348193, y: 9.1, z: -7.863222}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6016,6 +6016,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495363575}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &500976207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 423798145277158314, guid: 8999f70deebdccf41b447eff75ff5655, type: 3}
+  m_PrefabInstance: {fileID: 7163068032496608459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &500976214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500976207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17408342b3e53401195c95c7089635c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes:
+  - {fileID: 919132149155446097, guid: f526c57df9d28ce4ca682ca6fbbe79f8, type: 3}
+  - {fileID: 919132149155446097, guid: 1c5f63dfbaaf3a644ab99db765a3559a, type: 3}
+  - {fileID: 919132149155446097, guid: b04bc28cf88ce3647ba5147659413a4d, type: 3}
+  - {fileID: 919132149155446097, guid: d2f73fcd109fa7e4eb3037a1a6917b28, type: 3}
+  - {fileID: 919132149155446097, guid: 61b7bb2770344f64bbd95d8f7e3e59e6, type: 3}
+  spawnDelay: 0.3
+  noteLifeTime: 2
+  coneAngle: 60
 --- !u!1 &505219984
 GameObject:
   m_ObjectHideFlags: 0

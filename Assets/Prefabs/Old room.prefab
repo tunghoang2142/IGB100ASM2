@@ -880,7 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2707617411747636760}
   m_Layer: 0
-  m_Name: roomprefab
+  m_Name: Old room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
