@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
         health -= dam;
         if (health <= 0)
         {
-            // Makeshift
+            // TODO Change the dialog
             UIManager.Instance.DisplayDialog("Me: What a beautiful sound!");
             //
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressReward);
