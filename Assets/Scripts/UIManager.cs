@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
             DisplayAnnouncement();
         }
         
-        if (stress)
+        if (stress != null)
         {
             stress.text = "Stress: " + (int)GameManager.Stress;
         }

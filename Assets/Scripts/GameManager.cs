@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     public float madnessAccumulateRate = 10f;
     public float stressReward = -50f;
     public float stressPenalty = 30f;
+    public readonly float stressMaximumThreshold = 100f;
     
-
+    // TODO relocate this to sound manager
     [Header("Sound Setting")]
     public float maxVolumeDistance = 5f;
     public float minVolumeDistannce = 50f;
     public float maxVolume = 1f;
     public float minVolume = 0.5f;
+    //
 
     [Header("Game Object")]
     public GameObject existPoint;
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         // TODO replace this
         hint = GameObject.FindGameObjectWithTag("Hint");
-        if(stress >= 100)
+        if(stress >= stressMaximumThreshold)
         {
             Gameover();
         }
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     void IncreaseStress()
     {
-        if (!isGamePaused && !isNight)
+        if (!isGamePaused && isNight)
         {
             stress += Time.deltaTime * stressAccumulateRate;
         }
@@ -157,6 +159,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // TODO relocate this to soundmanager
     void ChangeBGMSound()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -177,6 +180,7 @@ public class GameManager : MonoBehaviour
         volumn = Mathf.Clamp(volumn, minVolume, maxVolume);
         SoundManager.Instance.ChangeBGMVolumn(volumn);
     }
+    //
 
     void DrawPath()
     {

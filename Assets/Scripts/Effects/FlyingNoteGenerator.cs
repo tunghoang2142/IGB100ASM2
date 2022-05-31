@@ -8,6 +8,7 @@ public class FlyingNoteGenerator : MonoBehaviour
     public float spawnDelay = 0.3f;
     public float noteLifeTime = 2f;
     public float coneAngle = 60f;
+    public float effectSize = 20f;
     float timer = 0f;
 
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class FlyingNoteGenerator : MonoBehaviour
             timer += spawnDelay;
             int random = Random.Range(0, notes.Length);
             GameObject note = Instantiate(notes[random], this.transform);
-            note.gameObject.transform.localScale = new Vector3(20, 20, 20);
+            note.gameObject.transform.localScale = new Vector3(effectSize, effectSize, effectSize);
             FlyingNote flyingNote = note.gameObject.GetComponent<FlyingNote>();
             if (flyingNote == null)
             {

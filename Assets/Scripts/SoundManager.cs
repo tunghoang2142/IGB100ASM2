@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource effectSource;
     private static SoundManager _instance;
 
-    private void Awake()
+    void Awake()
     {
         if (_instance != null && _instance != this)
         {
@@ -25,7 +25,11 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameManager.Instance.isNight && gameObject.GetComponentInChildren<Heatbeat>() == null)
+        {
+            GameObject heatbeat = Instantiate(new GameObject(), this.transform);
+            heatbeat.name = heatbeat.gameObject.AddComponent<Heatbeat>().GetType().Name;
+        }
     }
 
     public void ChangeBGMVolumn(float volumn)
