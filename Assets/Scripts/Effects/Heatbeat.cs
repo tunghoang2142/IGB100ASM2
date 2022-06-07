@@ -5,8 +5,9 @@ using UnityEngine;
 public class Heatbeat : MonoBehaviour
 {
     public float stressMinThreshold = 40f;
+    public float stressHighThreshold = 80f;
     public float stressMaxThreshold = GameManager.Instance.stressMaximumThreshold;
-    public float minVolume = 0.3f;
+    public float minVolume = 0.5f;
     public float maxVolume = 1f;
 
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class Heatbeat : MonoBehaviour
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
-            AudioClip audioClip = Resources.Load<AudioClip>(Config.soundPath + Config.heatbeatSoundName);
+            AudioClip audioClip = GetHeartbeatNormalAudio();
             audioSource.clip = audioClip;
             audioSource.loop = true;
             audioSource.Stop();
@@ -27,6 +28,16 @@ public class Heatbeat : MonoBehaviour
     void Update()
     {
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+
+        if (GameManager.Stress < stressHighThreshold && audioSource.clip.name != Config.heatbeatSFX)
+        {
+            audioSource.clip = GetHeartbeatNormalAudio();           
+        }
+        else if (GameManager.Stress >= stressHighThreshold && audioSource.clip.name != Config.heatbeatSFX2)
+        {
+            audioSource.clip = GetHeartbeatHighlAudio();
+        }
+
 
         if (GameManager.Stress >= stressMinThreshold)
         {
@@ -44,6 +55,16 @@ public class Heatbeat : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    AudioClip GetHeartbeatNormalAudio()
+    {
+        return Resources.Load<AudioClip>(Config.soundPath + Config.heatbeatSFX);
+    }
+
+    AudioClip GetHeartbeatHighlAudio()
+    {
+        return Resources.Load<AudioClip>(Config.soundPath + Config.heatbeatSFX2);
     }
 
 }

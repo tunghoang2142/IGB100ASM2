@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
         if (playerDirection.magnitude <= absoluteDetectionRadius)
         {
-            // Makeshift
+            // TODO do something about the dialog
             UIManager.Instance.DisplayDialog("Who are you!");
             //
 
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // Makeshift
+        // TODO do something about the dialog
         UIManager.Instance.DisplayDialog("Who are you!");
         //
 
@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
         float distance = (GameManager.Instance.existPoint.transform.position - this.transform.position).magnitude;
         if (distance <= escapeDistance)
         {
+            UIManager.Instance.DisplayDialog("Me: Damn! THey escaped!");
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressPenalty);
             Destroy(this.gameObject);
         }
@@ -95,7 +96,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float dam)
     {
-        // Makeshift
+        // TODO do something about the dialog
         List<string> dialogs = new List<string>();
         dialogs.Add("Help!");
         dialogs.Add("Argggggggg!!!");

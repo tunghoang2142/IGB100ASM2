@@ -8,16 +8,16 @@ public class GameManager : MonoBehaviour
     [Header("Setting")]
     public float stressAccumulateRate = 0.3f;
     public float madnessAccumulateRate = 10f;
-    public float stressReward = -50f;
-    public float stressPenalty = 30f;
+    public float stressReward = -30f;
+    public float stressPenalty = 10f;
     public readonly float stressMaximumThreshold = 100f;
     
     // TODO relocate this to sound manager
     [Header("Sound Setting")]
     public float maxVolumeDistance = 5f;
     public float minVolumeDistannce = 50f;
-    public float maxVolume = 1f;
-    public float minVolume = 0.5f;
+    public float maxVolume = 0.5f;
+    public float minVolume = 0.1f;
     //
 
     [Header("Game Object")]

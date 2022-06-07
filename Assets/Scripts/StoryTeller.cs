@@ -7,12 +7,13 @@ using UnityEngine.UI;
 
 public class Storyteller : MonoBehaviour
 {
+    public Image background;
     public TMP_Text charName;
     public Image charImage;
     public TMP_Text dialog;
 
     string textPath;
-    int linePointer = 0;
+    int linePointer = 1;
     TextAsset story;
     string[] lines;
 
@@ -26,6 +27,8 @@ public class Storyteller : MonoBehaviour
         textPath = Config.textPath + GameManager.SceneName;
         story = Resources.Load<TextAsset>(textPath);
         lines = ParseText(story.text);
+        string backgroundPath = Config.imagePath + lines[0];
+        background.sprite = Resources.Load<Sprite>(backgroundPath);
         ParseLine(lines[linePointer]);
     }
 
@@ -63,12 +66,16 @@ public class Storyteller : MonoBehaviour
             }
             else
             {
-                charName.text = character;
                 charImage.gameObject.SetActive(false);
             }
-
-            dialog.text = line.Substring(character.Length + 1);
-            dialog.text = Regex.Replace(dialog.text, "^ ", "");
         }
+        else
+        {
+            charName.text = "";
+            charImage.gameObject.SetActive(false);
+        }
+
+        dialog.text = line.Substring(character.Length + 1);
+        dialog.text = Regex.Replace(dialog.text, "^ ", "");
     }
 }
