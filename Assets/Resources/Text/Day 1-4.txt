@@ -1,0 +1,4 @@
+Night Corridor
+: It was not his room when he woke up but was on an unfamiliar corridor. From afar, he could hear unpleasant noises.
+: Althought he didn't know the situation is on, all he knew is that he had to
+Main: [ GET RID OF THAT NOISE! ]

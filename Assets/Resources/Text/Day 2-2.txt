@@ -1,0 +1,4 @@
+Night Corridor
+: He was back at this place again, with those unpleasant noise from afar.
+: In order to hear his most desired melody again, he must
+Main: [ Kill them! ]

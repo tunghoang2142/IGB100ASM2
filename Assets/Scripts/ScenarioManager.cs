@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScenarioManager : MonoBehaviour
 {
     static ScenarioManager _instance;
-    string[] sceneOrder = { "Menu", "Day 1-1", "Day 1-2", "NightScene", "Night 2" };
+    string[] sceneOrder = { "Menu", "Day 1-1", "Day 1-2", "Day 1-3", "Day 1-4", "GuideScene", "NightScene", "Day 1-5", "Day 2-1", "Day 2-2", "NightScene2", "Day X", "EndScene"};
     static int sceneIndex = 0;
 
     private void Awake()
@@ -22,6 +22,11 @@ public class ScenarioManager : MonoBehaviour
     }
 
     public static ScenarioManager Instance { get { return _instance; } }
+
+    public string GetSceneName()
+    {
+        return sceneOrder[sceneIndex];
+    }
 
     public void LoadScene(string sceneName)
     {
@@ -51,16 +56,28 @@ public class ScenarioManager : MonoBehaviour
         LoadScene();
     }
 
+    public void Resume()
+    {
+        GameManager.Instance.Reset();
+        LoadCurrentScene();
+    }
+
     public void Menu()
     {
         sceneIndex = 0;
+        GameManager.Instance.Reset();
+        LoadCurrentScene();
+    }
+
+    public void StartGame()
+    {
+        sceneIndex = 1;
         LoadCurrentScene();
     }
 
     void LoadScene()
     {
         string sceneName = sceneOrder[sceneIndex];
-        GameManager.Instance.ChangeSceneName(sceneName);
         if (Resources.Load<TextAsset>(Config.textPath + sceneName))
         {
             LoadScene(Config.storyScene);

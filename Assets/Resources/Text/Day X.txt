@@ -1,0 +1,10 @@
+Office
+Manager.: [ xxxxxxxxxxxx ]
+: Again, those unpleasant noises are calling his name.
+: However, no longer did he get upset hearing those noises. In fact, he was eager to find them.
+: Afterall, he knew too well that despite always giving out those irritating noise, they play such a beautiful music everytime he destroy them. 
+Main: [ I want to hear that song again. ]
+Manager.: [ Hey! What are you doing! ]
+Manager.: [ Stop! ]
+Manager.: [ Arrrrrrg! ]
+Main: [ Ah! What a beautiful melody. ]

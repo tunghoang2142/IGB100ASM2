@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
     public GameObject hint;
 
     [Header("Game State")]
-    public bool isGameover = false;
+    public static bool isGameover = false;
     public bool isGamePaused = false;
     public bool isNight = true;
+    bool isLoadingNextScene = false;
 
     GameObject player;
     LineRenderer lineRenderer;
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
     //static float money = 0f;
     static float stress = 0f;
     //static float madness = 0f;
-    static string sceneName;
+    //static string sceneName;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager Instance { get { return _instance; } }
-    public static string SceneName  { get { return sceneName; } }
+    //public static string SceneName  { get { return sceneName; } }
     public static float Stress { get { return stress; } }
     //public static float Madness { get { return madness; } }
 
@@ -77,8 +78,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameObject.FindGameObjectWithTag("Enemy") && isNight)
+        if (!GameObject.FindGameObjectWithTag("Enemy") && isNight && !isLoadingNextScene)
         {
+            isLoadingNextScene = true;
             StartCoroutine(LoadNextScene());
         }
 
@@ -114,10 +116,10 @@ public class GameManager : MonoBehaviour
         ScenarioManager.Instance.LoadNextScene();
     }
 
-    public void ChangeSceneName(string name)
-    {
-        sceneName = name;
-    }
+    //public void ChangeSceneName(string name)
+    //{
+    //    sceneName = name;
+    //}
 
     void IncreaseStress()
     {
@@ -155,7 +157,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         isGameover = true;
-        UIManager.Instance.Gameover();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //UIManager.Instance.Gameover();
+        // TODO use config link
+        ScenarioManager.Instance.LoadScene("GameoverScene");
     }
 
     public void Pause()
@@ -177,6 +183,13 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             UIManager.Instance.Pause();
         }
+    }
+
+    public void Reset()
+    {
+        stress = 0f;
+        isGameover = false;
+        isGamePaused = false;
     }
 
     // TODO relocate this to soundmanager

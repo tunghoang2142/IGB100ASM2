@@ -1,6 +1,7 @@
 Office
 : Day 1
-Main: Test
-Manager: A
-Main: B
-Manager: C
+: Another day of dull works.
+Manager: [ xxx, the client is calling for you. ]
+Main: [ Yes. ]
+: It had been years since he is on this job, yet he never managed to mix in well with his peers.
+: Is seem that it would take forever for him to fit in the society.

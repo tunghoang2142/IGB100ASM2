@@ -20,11 +20,7 @@ public class Storyteller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager.SceneName == null)
-        {
-            GameManager.Instance.ChangeSceneName("Day 1");
-        }
-        textPath = Config.textPath + GameManager.SceneName;
+        textPath = Config.textPath + ScenarioManager.Instance.GetSceneName();
         story = Resources.Load<TextAsset>(textPath);
         lines = ParseText(story.text);
         string backgroundPath = Config.imagePath + lines[0];
