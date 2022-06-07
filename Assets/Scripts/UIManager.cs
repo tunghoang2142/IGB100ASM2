@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void Pause()
     {
-        if (!GameManager.Instance.isGamePaused)
+        if (GameManager.Instance.isGamePaused)
         {
             pause.gameObject.SetActive(true);
         }
@@ -124,7 +124,6 @@ public class UIManager : MonoBehaviour
 
     string RemoveFirstLine(string str)
     {
-        //print(str);
         string[] lines = Regex.Split(str, "\n");
         string result = "";
         for (int i = 0; i < lines.Length; i++)

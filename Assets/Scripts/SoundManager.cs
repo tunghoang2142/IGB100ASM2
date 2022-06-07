@@ -32,6 +32,19 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayEffect(string effectName, float volumn = 1f)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>(Config.soundPath + effectName);
+        if(audioClip != null)
+        {
+            AudioSource audioSource = Instantiate(new GameObject(), this.transform).AddComponent<AudioSource>();
+            audioSource.clip = audioClip;
+            audioSource.loop = false;
+            audioSource.volume = volumn;
+            audioSource.Play();
+        }
+    }
+
     public void ChangeBGMVolumn(float volumn)
     {
         backgroundSource.volume = volumn;
@@ -42,6 +55,7 @@ public class SoundManager : MonoBehaviour
         backgroundSource.clip = clip;
     }
 
+    // TODO Remove this
     public void ChangeEffectVolumn(float volumn)
     {
         effectSource.volume = volumn;
@@ -55,9 +69,6 @@ public class SoundManager : MonoBehaviour
     public void PlayEffect()
     {
         effectSource.Play();
-        //if (!effectSource.isPlaying)
-        //{
-        //    effectSource.Play();
-        //}
     }
+    //
 }

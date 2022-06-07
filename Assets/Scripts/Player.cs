@@ -15,18 +15,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Rotate();
-
-        Attack();
-
+        if (!GameManager.Instance.isGamePaused)
+        {
+            Move();
+            Rotate();
+            Attack();
+        }
     }
 
     void Attack()

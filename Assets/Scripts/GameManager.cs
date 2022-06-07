@@ -60,6 +60,17 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         lineRenderer = gameObject.GetComponent<LineRenderer>();
+
+        if (isNight)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     // Update is called once per frame
@@ -89,7 +100,7 @@ public class GameManager : MonoBehaviour
             ChangeBGMSound();
             DrawPath();
 
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Pause();
             }
@@ -148,6 +159,8 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             isGamePaused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             UIManager.Instance.Pause();
 
         }
@@ -155,6 +168,8 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             isGamePaused = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             UIManager.Instance.Pause();
         }
     }
