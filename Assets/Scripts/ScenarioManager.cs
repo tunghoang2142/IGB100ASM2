@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScenarioManager : MonoBehaviour
 {
     static ScenarioManager _instance;
-    string[] sceneOrder = { "Menu", "Day 1", "Day 2", "NightScene", "Night 2" };
+    string[] sceneOrder = { "Menu", "Day 1-1", "Day 1-2", "NightScene", "Night 2" };
     static int sceneIndex = 0;
 
     private void Awake()

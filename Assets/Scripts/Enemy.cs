@@ -54,8 +54,9 @@ public class Enemy : MonoBehaviour
 
         if (playerDirection.magnitude <= absoluteDetectionRadius)
         {
-            // TODO do something about the dialog
+            // TODO do something about the dialog, consider making a function for it
             UIManager.Instance.DisplayDialog("Who are you!");
+            SoundManager.Instance.PlayEffect(Config.unpleasantSound);
             //
 
             isPlayerDetected = true;
@@ -74,8 +75,9 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // TODO do something about the dialog
+        // TODO do something about the dialog, consider making a function for it
         UIManager.Instance.DisplayDialog("Who are you!");
+        SoundManager.Instance.PlayEffect(Config.unpleasantSound);
         //
 
         isPlayerDetected = true;
@@ -87,7 +89,8 @@ public class Enemy : MonoBehaviour
         float distance = (GameManager.Instance.existPoint.transform.position - this.transform.position).magnitude;
         if (distance <= escapeDistance)
         {
-            UIManager.Instance.DisplayDialog("Me: Damn! THey escaped!");
+            SoundManager.Instance.PlayEffect(Config.unpleasantSound);
+            UIManager.Instance.DisplayDialog("Me: Damn! They escaped!");
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressPenalty);
             Destroy(this.gameObject);
         }
@@ -96,8 +99,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float dam)
     {
-        // TODO do something about the dialog
-        List<string> dialogs = new List<string>();
+        // TODO do something about the dialog, consider making a function for it
+        List<string> dialogs = new();
         dialogs.Add("Help!");
         dialogs.Add("Argggggggg!!!");
         dialogs.Add("Noooooooo!!!");
@@ -111,11 +114,16 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             // TODO Change the dialog
-            UIManager.Instance.DisplayDialog("Me: What a beautiful sound!");
+            UIManager.Instance.DisplayDialog("Me: Ah! What a beautiful sound.");
             //
+            SoundManager.Instance.PlayEffect(Config.pleasantPianoSFX);
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressReward);
-            GameManager.Instance.IncreaseMadness(GameManager.Instance.madnessAccumulateRate);
             Destroy(this.gameObject);
+        }
+        else
+        {
+            // TODO Remove magic number
+            SoundManager.Instance.PlayEffect(Config.pleasantSound, 0.5f);
         }
     }
 }

@@ -6,10 +6,11 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     [Header("Setting")]
-    public float stressAccumulateRate = 0.3f;
-    public float madnessAccumulateRate = 10f;
-    public float stressReward = -30f;
-    public float stressPenalty = 10f;
+    public float stressAccumulateRate = 0.5f;
+    //public float madnessAccumulateRate = 10f;
+    public readonly float stressReward = -30f;
+    public readonly float stressPenalty = 10f;
+    public readonly float stressMinimumThreshold = 0f;
     public readonly float stressMaximumThreshold = 100f;
     
     // TODO relocate this to sound manager
@@ -31,10 +32,10 @@ public class GameManager : MonoBehaviour
 
     GameObject player;
     LineRenderer lineRenderer;
-    private static GameManager _instance;
-    static float money = 0f;
+    static GameManager _instance;
+    //static float money = 0f;
     static float stress = 0f;
-    static float madness = 0f;
+    //static float madness = 0f;
     static string sceneName;
 
     private void Awake()
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
     public static string SceneName  { get { return sceneName; } }
     public static float Stress { get { return stress; } }
-    public static float Madness { get { return madness; } }
+    //public static float Madness { get { return madness; } }
 
 
     // Start is called before the first frame update
@@ -129,6 +130,10 @@ public class GameManager : MonoBehaviour
     public void IncreaseStress(float amount)
     {
         stress += amount;
+        if(stress < stressMinimumThreshold)
+        {
+            stress = stressMinimumThreshold;
+        }
         string stressAnnounce;
         if(amount >= 0)
         {
@@ -141,10 +146,10 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.DisplayAnnouncement(stressAnnounce);
     }
 
-    public void IncreaseMadness(float amount)
-    {
-        madness += amount;
-    }
+    //public void IncreaseMadness(float amount)
+    //{
+    //    madness += amount;
+    //}
 
     void Gameover()
     {

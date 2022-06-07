@@ -8943,9 +8943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stressAccumulateRate: 1
-  madnessAccumulateRate: 10
-  stressReward: -50
-  stressPenalty: 30
   maxVolumeDistance: 5
   minVolumeDistannce: 50
   maxVolume: 0.5
@@ -26962,7 +26959,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 83552c4df2fb5472997c031ff3e8fe6b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ebfad7ebbae54e29a17c5d44d4e3b4e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
