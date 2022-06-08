@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
         if (distance <= escapeDistance)
         {
             SoundManager.Instance.PlayEffect(Config.unpleasantSound);
-            UIManager.Instance.DisplayDialog("Me: Damn! They escaped!");
+            UIManager.Instance.DisplayDialog("Me: Damn! It escaped!");
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressPenalty);
             Destroy(this.gameObject);
         }
@@ -116,14 +116,14 @@ public class Enemy : MonoBehaviour
             // TODO Change the dialog
             UIManager.Instance.DisplayDialog("Me: Ah! What a beautiful sound.");
             //
-            SoundManager.Instance.PlayEffect(Config.pleasantPianoSFX);
+            SoundManager.Instance.PlayEffect(Config.pleasantSound);
             GameManager.Instance.IncreaseStress(GameManager.Instance.stressReward);
             Destroy(this.gameObject);
         }
         else
         {
             // TODO Remove magic number
-            SoundManager.Instance.PlayEffect(Config.pleasantSound, 0.5f);
+            SoundManager.Instance.PlayEffect(Config.pleasantPianoSFX, 0.5f);
         }
     }
 }

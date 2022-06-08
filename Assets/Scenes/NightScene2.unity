@@ -7455,7 +7455,7 @@ MonoBehaviour:
   rotationSpeed: 60
   meleeDam: 1
   meleeDelay: 0.6
-  attackRange: 1
+  attackRange: 2
 --- !u!136 &294541064
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9030,10 +9030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stressAccumulateRate: 1
-  maxVolumeDistance: 5
-  minVolumeDistannce: 50
+  maxVolumeDistance: 3
+  minVolumeDistannce: 20
   maxVolume: 0.5
-  minVolume: 0.2
+  minVolume: 0.1
   existPoint: {fileID: 782628375}
   hint: {fileID: 0}
   isGamePaused: 0
@@ -20790,7 +20790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782628375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: 13}
+  m_LocalPosition: {x: 13, y: 2.9, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public float stressAccumulateRate = 0.5f;
     //public float madnessAccumulateRate = 10f;
     public readonly float stressReward = -30f;
-    public readonly float stressPenalty = 10f;
+    public readonly float stressPenalty = 20f;
     public readonly float stressMinimumThreshold = 0f;
     public readonly float stressMaximumThreshold = 100f;
     
