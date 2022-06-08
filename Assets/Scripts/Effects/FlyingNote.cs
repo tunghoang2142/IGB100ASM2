@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyingNote : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 2.5f;
     public float lifeTime = 2f;
     // Start is called before the first frame update
     void Start()
