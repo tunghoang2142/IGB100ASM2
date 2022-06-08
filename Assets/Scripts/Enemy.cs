@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 30f;
     public float detectionAngle = 30f;
     public float absoluteDetectionRadius = 3f;
-    public float escapeDistance;
+    public float escapeDistance = 3f;
 
     bool isPlayerDetected = false;
     GameObject player;

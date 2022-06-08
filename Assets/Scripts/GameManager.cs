@@ -139,11 +139,11 @@ public class GameManager : MonoBehaviour
         string stressAnnounce;
         if(amount >= 0)
         {
-            stressAnnounce = "+ " + amount;
+            stressAnnounce = "+ " + amount + "stress";
         }
         else
         {
-            stressAnnounce = "-" + amount;
+            stressAnnounce = "-" + amount + "stress";
         }
         UIManager.Instance.DisplayAnnouncement(stressAnnounce);
     }
