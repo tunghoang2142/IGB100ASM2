@@ -54,12 +54,7 @@ public class Enemy : MonoBehaviour
 
         if (playerDirection.magnitude <= absoluteDetectionRadius)
         {
-            // TODO do something about the dialog, consider making a function for it
-            UIManager.Instance.DisplayDialog("Who are you!");
-            SoundManager.Instance.PlayEffect(Config.unpleasantSound);
-            //
-
-            isPlayerDetected = true;
+            PlayerDetected();
             return;
         }
 
@@ -75,11 +70,18 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // TODO do something about the dialog, consider making a function for it
+        PlayerDetected();
+    }
+
+    void PlayerDetected()
+    {
+        // TODO do something about the dialog
         UIManager.Instance.DisplayDialog("Who are you!");
         SoundManager.Instance.PlayEffect(Config.unpleasantSound);
         //
 
+        // Remove note generator
+        Destroy(this.gameObject.GetComponent<FlyingNoteGenerator>());
         isPlayerDetected = true;
     }
 
