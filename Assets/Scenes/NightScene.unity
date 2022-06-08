@@ -7451,7 +7451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45993e13625e45f0bebb1f4803c384d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   rotationSpeed: 60
   meleeDam: 1
   meleeDelay: 0.6
@@ -20790,7 +20790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782628375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: 13}
+  m_LocalPosition: {x: 8.85, y: 2.52, z: 13.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48920,7 +48920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 423798145277158316, guid: 8999f70deebdccf41b447eff75ff5655, type: 3}
       propertyPath: m_Speed
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 423798145277158317, guid: 8999f70deebdccf41b447eff75ff5655, type: 3}
       propertyPath: m_RootOrder

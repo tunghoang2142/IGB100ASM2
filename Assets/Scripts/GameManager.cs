@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     void IncreaseStress()
     {
-        if (!isGamePaused && isNight)
+        if (!isGamePaused && isNight && GameObject.FindGameObjectWithTag("Enemy"))
         {
             stress += Time.deltaTime * stressAccumulateRate;
         }
