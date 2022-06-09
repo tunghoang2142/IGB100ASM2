@@ -78,6 +78,7 @@ public class ScenarioManager : MonoBehaviour
     void LoadScene()
     {
         string sceneName = sceneOrder[sceneIndex];
+        print(sceneName);
         if (Resources.Load<TextAsset>(Config.textPath + sceneName))
         {
             LoadScene(Config.storyScene);
